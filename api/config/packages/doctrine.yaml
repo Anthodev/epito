@@ -5,6 +5,8 @@ doctrine:
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '16'
+        types:
+            ShowStatusEnum: App\Infrastructure\Persistence\Doctrine\Type\ShowStatusEnumType
 
         profiling_collect_backtrace: "%kernel.debug%"
         use_savepoints: true
@@ -24,6 +26,12 @@ doctrine:
                 dir: "%kernel.project_dir%/src/Infrastructure/Persistence/Doctrine/config/User"
                 prefix: 'App\Domain\Model\User'
                 alias: User
+            Show:
+                is_bundle: false
+                type: xml
+                dir: "%kernel.project_dir%/src/Infrastructure/Persistence/Doctrine/config/Show"
+                prefix: 'App\Domain\Model\Show'
+                alias: Show
         controller_resolver:
             auto_mapping: false
 
