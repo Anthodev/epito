@@ -19,16 +19,16 @@ class Show implements ModelInterface
     use TimestampableTrait;
 
     public function __construct(
+        private string $slug,
+        private int $idTvmaze,
         private ?string $summary = null,
         private ShowStatusEnum $status = ShowStatusEnum::IN_DEVELOPMENT,
         private ?string $poster = null,
         private ?string $website = null,
         private ?float $rating = null,
         private ?string $language = null,
-        private string $slug,
         private ?int $runtime = null,
         private ?string $premiered = null,
-        private int $idTvmaze,
         private ?int $idImdb = null,
         private ?int $idTvdb = null,
     ) {
