@@ -10,6 +10,8 @@ use App\Domain\Trait\IdTrait;
 use App\Domain\Trait\NameableTrait;
 use App\Domain\Trait\TimestampableTrait;
 use App\Shared\Enum\ShowStatusEnum;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ApiResource(mercure: true)]
 class Show implements ModelInterface
@@ -21,6 +23,8 @@ class Show implements ModelInterface
     public function __construct(
         private string $slug,
         private int $idTvmaze,
+        /** @var Collection<int, Season> */
+        private Collection $seasons,
         private ?string $summary = null,
         private ShowStatusEnum $status = ShowStatusEnum::IN_DEVELOPMENT,
         private ?string $poster = null,
@@ -32,6 +36,7 @@ class Show implements ModelInterface
         private ?int $idImdb = null,
         private ?int $idTvdb = null,
     ) {
+        $this->seasons = new ArrayCollection();
     }
 
     public function getSummary(): ?string
@@ -174,6 +179,32 @@ class Show implements ModelInterface
     public function setIdTvdb(?int $idTvdb): self
     {
         $this->idTvdb = $idTvdb;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Season>
+     */
+    public function getSeasons(): Collection
+    {
+        return $this->seasons;
+    }
+
+    public function addSeason(Season $season): self
+    {
+        if (!$this->seasons->contains($season)) {
+            $this->seasons->add($season);
+        }
+
+        return $this;
+    }
+
+    public function removeSeason(Season $season): self
+    {
+        if ($this->seasons->contains($season)) {
+            $this->seasons->removeElement($season);
+        }
 
         return $this;
     }

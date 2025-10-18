@@ -4,28 +4,25 @@
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     https://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Domain\Model\Show\Episode" table="episodes">
+    <entity name="App\Domain\Model\Show\Season" table="seasons">
         <id name="id" type="uuid" column="id">
             <generator strategy="CUSTOM"/>
             <custom-id-generator class="Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator"/>
         </id>
 
-        <field name="title" type="string" column="title" length="255">
-        </field>
-
-        <field name="summary" type="text" column="summary" nullable="true">
-        </field>
-
         <field name="number" type="integer" column="number">
         </field>
 
-        <field name="airstamp" type="datetime_immutable" column="airstamp">
+        <field name="episodeCount" type="integer" column="episode_count">
         </field>
 
-        <field name="runtime" type="integer" column="runtime" nullable="true">
+        <field name="poster" type="string" column="poster" length="255" nullable="true">
         </field>
 
-        <field name="image" type="string" column="image" length="255" nullable="true">
+        <field name="premiereDate" type="datetime" column="premiere_date" nullable="true">
+        </field>
+
+        <field name="endDate" type="datetime" column="end_date" nullable="true">
         </field>
 
         <field name="createdAt" type="datetime_immutable" column="created_at">
@@ -40,8 +37,11 @@
             </options>
         </field>
 
-        <many-to-one field="season" target-entity="App\Domain\Model\Show\Season" inversed-by="episodes">
-            <join-column name="season_id" referenced-column-name="id" nullable="false"/>
+        <many-to-one field="tvShow" target-entity="App\Domain\Model\Show\Show" inversed-by="seasons">
+            <join-column name="tv_show_id" referenced-column-name="id" nullable="false"/>
         </many-to-one>
+
+        <one-to-many field="episodes" target-entity="App\Domain\Model\Show\Episode" mapped-by="season">
+        </one-to-many>
     </entity>
 </doctrine-mapping>

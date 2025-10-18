@@ -20,6 +20,7 @@ class Episode implements ModelInterface
     public function __construct(
         private int $number,
         private \DateTime $airstamp,
+        private Season $season,
         private ?string $summary = null,
         private ?int $runtime = null,
         private ?string $image = null,
@@ -82,6 +83,18 @@ class Episode implements ModelInterface
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getSeason(): Season
+    {
+        return $this->season;
+    }
+
+    public function setSeason(Season $season): self
+    {
+        $this->season = $season;
 
         return $this;
     }
