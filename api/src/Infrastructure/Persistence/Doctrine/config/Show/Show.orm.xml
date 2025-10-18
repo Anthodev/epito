@@ -64,6 +64,9 @@
             </options>
         </field>
 
+        <one-to-many field="seasons" target-entity="App\Domain\Model\Show\Season" mapped-by="tvShow">
+        </one-to-many>
+
         <indexes>
             <index name="shows_name" columns="name"/>
             <index name="shows_slug" columns="slug"/>
