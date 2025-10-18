@@ -17,4 +17,6 @@ use App\Domain\Show\Show;
  * @method void   refresh(Show $role)
  * @method void   rollback()
  */
-interface ShowRepositoryInterface {}
+interface ShowRepositoryInterface
+{
+}

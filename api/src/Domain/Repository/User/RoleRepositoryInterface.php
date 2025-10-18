@@ -17,4 +17,6 @@ use App\Domain\Model\User\Role;
  * @method void   refresh(Role $role)
  * @method void   rollback()
  */
-interface RoleRepositoryInterface {}
+interface RoleRepositoryInterface
+{
+}

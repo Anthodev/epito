@@ -9,8 +9,7 @@ use App\Domain\Repository\Show\ShowRepositoryInterface;
 use App\Infrastructure\Persistence\Doctrine\Common\DoctrineBaseEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class DoctrineShowRepository extends DoctrineBaseEntityRepository implements
-    ShowRepositoryInterface
+class DoctrineShowRepository extends DoctrineBaseEntityRepository implements ShowRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

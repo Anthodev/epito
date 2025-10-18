@@ -31,7 +31,8 @@ class Show implements ModelInterface
         private int $idTvmaze,
         private ?int $idImdb = null,
         private ?int $idTvdb = null,
-    ) {}
+    ) {
+    }
 
     public function getSummary(): ?string
     {

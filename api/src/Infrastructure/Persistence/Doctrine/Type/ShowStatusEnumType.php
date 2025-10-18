@@ -10,7 +10,7 @@ use Doctrine\DBAL\Types\Type;
 
 class ShowStatusEnumType extends Type
 {
-    public const string NAME = "ShowStatusEnum";
+    public const string NAME = 'ShowStatusEnum';
 
     public function getSQLDeclaration(
         array $column,
@@ -39,13 +39,7 @@ class ShowStatusEnumType extends Type
         }
 
         if (!$value instanceof ShowStatusEnum) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Expected instance of %s, got %s",
-                    ShowStatusEnum::class,
-                    gettype($value),
-                ),
-            );
+            throw new \InvalidArgumentException(sprintf('Expected instance of %s, got %s', ShowStatusEnum::class, gettype($value)));
         }
 
         return $value->value;

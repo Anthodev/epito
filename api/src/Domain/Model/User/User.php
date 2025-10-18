@@ -13,10 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Attribute\Ignore;
 
 #[ApiResource(mercure: true)]
-class User implements
-    ModelInterface,
-    UserInterface,
-    PasswordAuthenticatedUserInterface
+class User implements ModelInterface, UserInterface, PasswordAuthenticatedUserInterface
 {
     use IdTrait;
     use TimestampableTrait;
@@ -28,7 +25,8 @@ class User implements
         private ?string $plainPassword = null,
         private bool $enabled = false,
         private ?Role $role = null,
-    ) {}
+    ) {
+    }
 
     public function getEmail(): string
     {

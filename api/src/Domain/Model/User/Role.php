@@ -22,7 +22,8 @@ class Role implements ModelInterface
         private ?string $label = null,
         /** @var Collection<int, User> $users */
         private Collection $users = new ArrayCollection(),
-    ) {}
+    ) {
+    }
 
     public function getLabel(): ?string
     {

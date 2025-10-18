@@ -12,9 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class DoctrineUserRepository extends DoctrineBaseEntityRepository implements
-    UserLoaderInterface,
-    UserRepositoryInterface
+class DoctrineUserRepository extends DoctrineBaseEntityRepository implements UserLoaderInterface, UserRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -27,10 +25,10 @@ class DoctrineUserRepository extends DoctrineBaseEntityRepository implements
     #[\Override]
     public function loadUserByIdentifier(string $identifier): ?UserInterface
     {
-        $query = $this->createQueryBuilder("u")
-            ->where("u.email = :email")
-            ->andWhere("u.enabled = true")
-            ->setParameter("email", $identifier)
+        $query = $this->createQueryBuilder('u')
+            ->where('u.email = :email')
+            ->andWhere('u.enabled = true')
+            ->setParameter('email', $identifier)
             ->getQuery();
 
         /** @var UserInterface|null */

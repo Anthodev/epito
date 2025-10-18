@@ -9,8 +9,7 @@ use App\Domain\Repository\User\RoleRepositoryInterface;
 use App\Infrastructure\Persistence\Doctrine\Common\DoctrineBaseEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class DoctrineRoleRepository extends DoctrineBaseEntityRepository implements
-    RoleRepositoryInterface
+class DoctrineRoleRepository extends DoctrineBaseEntityRepository implements RoleRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
