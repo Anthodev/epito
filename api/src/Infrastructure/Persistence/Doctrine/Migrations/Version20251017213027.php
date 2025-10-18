@@ -24,10 +24,6 @@ final class Version20251017213027 extends AbstractMigration
         $this->addSql('CREATE INDEX shows_name ON tvshows (name)');
         $this->addSql('CREATE UNIQUE INDEX shows_slug_unique_constraint ON tvshows (slug)');
         $this->addSql('CREATE UNIQUE INDEX shows_id_tvmaze_unique_constraint ON tvshows (id_tvmaze)');
-        $this->addSql('ALTER TABLE roles ALTER created_at SET DEFAULT \'NOW()\'');
-        $this->addSql('ALTER TABLE roles ALTER updated_at SET DEFAULT \'NOW()\'');
-        $this->addSql('ALTER TABLE users ALTER created_at SET DEFAULT \'NOW()\'');
-        $this->addSql('ALTER TABLE users ALTER updated_at SET DEFAULT \'NOW()\'');
     }
 
     public function down(Schema $schema): void

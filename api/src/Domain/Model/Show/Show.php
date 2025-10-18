@@ -39,9 +39,11 @@ class Show implements ModelInterface
         return $this->summary;
     }
 
-    public function setSummary(?string $summary): void
+    public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
+
+        return $this;
     }
 
     public function getStatus(): ShowStatusEnum
@@ -49,9 +51,11 @@ class Show implements ModelInterface
         return $this->status;
     }
 
-    public function setStatus(ShowStatusEnum $status): void
+    public function setStatus(ShowStatusEnum $status): self
     {
         $this->status = $status;
+
+        return $this;
     }
 
     public function getPoster(): ?string
@@ -59,9 +63,11 @@ class Show implements ModelInterface
         return $this->poster;
     }
 
-    public function setPoster(?string $poster): void
+    public function setPoster(?string $poster): self
     {
         $this->poster = $poster;
+
+        return $this;
     }
 
     public function getWebsite(): ?string
@@ -69,9 +75,11 @@ class Show implements ModelInterface
         return $this->website;
     }
 
-    public function setWebsite(?string $website): void
+    public function setWebsite(?string $website): self
     {
         $this->website = $website;
+
+        return $this;
     }
 
     public function getRating(): ?float
@@ -79,9 +87,11 @@ class Show implements ModelInterface
         return $this->rating;
     }
 
-    public function setRating(?float $rating): void
+    public function setRating(?float $rating): self
     {
         $this->rating = $rating;
+
+        return $this;
     }
 
     public function getLanguage(): ?string
@@ -89,9 +99,11 @@ class Show implements ModelInterface
         return $this->language;
     }
 
-    public function setLanguage(?string $language): void
+    public function setLanguage(?string $language): self
     {
         $this->language = $language;
+
+        return $this;
     }
 
     public function getSlug(): string
@@ -99,9 +111,11 @@ class Show implements ModelInterface
         return $this->slug;
     }
 
-    public function setSlug(string $slug): void
+    public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
     public function getRuntime(): ?int
@@ -109,9 +123,11 @@ class Show implements ModelInterface
         return $this->runtime;
     }
 
-    public function setRuntime(?int $runtime): void
+    public function setRuntime(?int $runtime): self
     {
         $this->runtime = $runtime;
+
+        return $this;
     }
 
     public function getPremiered(): ?string
@@ -119,9 +135,11 @@ class Show implements ModelInterface
         return $this->premiered;
     }
 
-    public function setPremiered(?string $premiered): void
+    public function setPremiered(?string $premiered): self
     {
         $this->premiered = $premiered;
+
+        return $this;
     }
 
     public function getIdTvmaze(): int
@@ -129,9 +147,11 @@ class Show implements ModelInterface
         return $this->idTvmaze;
     }
 
-    public function setIdTvmaze(int $idTvmaze): void
+    public function setIdTvmaze(int $idTvmaze): self
     {
         $this->idTvmaze = $idTvmaze;
+
+        return $this;
     }
 
     public function getIdImdb(): ?int
@@ -139,9 +159,11 @@ class Show implements ModelInterface
         return $this->idImdb;
     }
 
-    public function setIdImdb(?int $idImdb): void
+    public function setIdImdb(?int $idImdb): self
     {
         $this->idImdb = $idImdb;
+
+        return $this;
     }
 
     public function getIdTvdb(): ?int
@@ -149,8 +171,10 @@ class Show implements ModelInterface
         return $this->idTvdb;
     }
 
-    public function setIdTvdb(?int $idTvdb): void
+    public function setIdTvdb(?int $idTvdb): self
     {
         $this->idTvdb = $idTvdb;
+
+        return $this;
     }
 }
