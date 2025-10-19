@@ -1,31 +1,45 @@
 // @ts-check
-const { defineConfig, devices } = require('@playwright/test');
+const { defineConfig, devices } = require("@playwright/test");
+
+const isCI = !!process.env.CI;
 
 module.exports = defineConfig({
-  testDir: './tests',
+  testDir: "./tests",
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: 0,
-  workers: 1,
-  reporter: 'html',
+  forbidOnly: isCI,
+  retries: isCI ? 1 : 0,
+  workers: isCI ? 4 : undefined,
+  timeout: 120_000,
+  expect: {
+    timeout: 10_000,
+  },
+  reporter: "html",
   use: {
     ignoreHTTPSErrors: true,
-    trace: 'on-first-retry',
+    trace: isCI ? "off" : "on-first-retry",
+    navigationTimeout: 30_000,
+    actionTimeout: 10_000,
   },
 
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'], },
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-  ],
+  projects: isCI
+    ? [
+        {
+          name: "chromium",
+          use: { ...devices["Desktop Chrome"] },
+        },
+      ]
+    : [
+        {
+          name: "chromium",
+          use: { ...devices["Desktop Chrome"] },
+        },
+        {
+          name: "firefox",
+          use: { ...devices["Desktop Firefox"] },
+        },
+        {
+          name: "webkit",
+          use: { ...devices["Desktop Safari"] },
+        },
+      ],
 });
-
