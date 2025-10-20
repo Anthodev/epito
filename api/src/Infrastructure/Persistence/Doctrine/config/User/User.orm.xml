@@ -46,6 +46,9 @@
             inversed-by="users"
         />
 
+        <one-to-many field="followings" target-entity="App\Domain\Model\Show\Following" mapped-by="user">
+        </one-to-many>
+
         <indexes>
             <index name="users_email" columns="email"/>
             <index name="users_username" columns="username"/>

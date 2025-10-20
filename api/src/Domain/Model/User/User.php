@@ -6,8 +6,11 @@ namespace App\Domain\Model\User;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Domain\Model\Common\ModelInterface;
+use App\Domain\Model\Show\Following;
 use App\Domain\Trait\IdTrait;
 use App\Domain\Trait\TimestampableTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Attribute\Ignore;
@@ -21,6 +24,8 @@ class User implements ModelInterface, UserInterface, PasswordAuthenticatedUserIn
     public function __construct(
         private string $email,
         private string $username,
+        /** @var Collection<int, Following> */
+        private Collection $followings = new ArrayCollection(),
         #[Ignore] private ?string $password = null,
         private ?string $plainPassword = null,
         private bool $enabled = false,
@@ -84,6 +89,32 @@ class User implements ModelInterface, UserInterface, PasswordAuthenticatedUserIn
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Following>
+     */
+    public function getFollowings(): Collection
+    {
+        return $this->followings;
+    }
+
+    public function addFollowing(Following $following): self
+    {
+        if (!$this->followings->contains($following)) {
+            $this->followings->add($following);
+        }
+
+        return $this;
+    }
+
+    public function removeFollowing(Following $following): self
+    {
+        if ($this->followings->contains($following)) {
+            $this->followings->removeElement($following);
+        }
 
         return $this;
     }
