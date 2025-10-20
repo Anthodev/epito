@@ -64,6 +64,10 @@
             </options>
         </field>
 
+        <many-to-one field="type" target-entity="App\Domain\Model\Show\ShowType" inversed-by="shows">
+            <join-column name="show_type_id" referenced-column-name="id" nullable="false"/>
+        </many-to-one>
+
         <one-to-many field="seasons" target-entity="App\Domain\Model\Show\Season" mapped-by="tvShow">
         </one-to-many>
 
@@ -71,6 +75,7 @@
             <index name="shows_name" columns="name"/>
             <index name="shows_slug" columns="slug"/>
             <index name="shows_id_tvmaze" columns="id_tvmaze"/>
+            <index name="shows_show_type_id" columns="show_type_id"/>
         </indexes>
 
         <unique-constraints>

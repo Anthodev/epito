@@ -23,6 +23,7 @@ class Show implements ModelInterface
     public function __construct(
         private string $slug,
         private int $idTvmaze,
+        private ShowType $type,
         /** @var Collection<int, Season> */
         private Collection $seasons,
         private ?string $summary = null,
@@ -179,6 +180,18 @@ class Show implements ModelInterface
     public function setIdTvdb(?int $idTvdb): self
     {
         $this->idTvdb = $idTvdb;
+
+        return $this;
+    }
+
+    public function getType(): ShowType
+    {
+        return $this->type;
+    }
+
+    public function setType(ShowType $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
