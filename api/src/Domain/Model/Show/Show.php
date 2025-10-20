@@ -24,6 +24,7 @@ class Show implements ModelInterface
         private string $slug,
         private int $idTvmaze,
         private ShowType $type,
+        private Network $network,
         /** @var Collection<int, Genre> */
         private Collection $genres,
         /** @var Collection<int, Season> */
@@ -194,6 +195,18 @@ class Show implements ModelInterface
     public function setType(ShowType $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getNetwork(): ?Network
+    {
+        return $this->network;
+    }
+
+    public function setNetwork(?Network $network): self
+    {
+        $this->network = $network;
 
         return $this;
     }

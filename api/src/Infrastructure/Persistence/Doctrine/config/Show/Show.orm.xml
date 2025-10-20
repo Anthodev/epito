@@ -68,6 +68,10 @@
             <join-column name="show_type_id" referenced-column-name="id" nullable="false"/>
         </many-to-one>
 
+        <many-to-one field="network" target-entity="App\Domain\Model\Show\Network" inversed-by="shows">
+            <join-column name="network_id" referenced-column-name="id" nullable="true"/>
+        </many-to-one>
+
         <many-to-many field="genres" target-entity="App\Domain\Model\Show\Genre" inversed-by="shows">
             <join-table name="shows_genres">
                 <join-columns>
@@ -87,6 +91,7 @@
             <index name="shows_slug" columns="slug"/>
             <index name="shows_id_tvmaze" columns="id_tvmaze"/>
             <index name="shows_show_type_id" columns="show_type_id"/>
+            <index name="shows_network_id" columns="network_id"/>
         </indexes>
 
         <unique-constraints>
