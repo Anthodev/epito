@@ -28,7 +28,7 @@
             </options>
         </field>
 
-        <many-to-one field="user" target-entity="App\Domain\Model\User\User">
+        <many-to-one field="user" target-entity="App\Domain\Model\User\User" inversed-by="followings">
             <join-column name="user_id" referenced-column-name="id" nullable="false"/>
         </many-to-one>
 
