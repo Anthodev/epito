@@ -199,12 +199,12 @@ class Show implements ModelInterface
         return $this;
     }
 
-    public function getNetwork(): ?Network
+    public function getNetwork(): Network
     {
         return $this->network;
     }
 
-    public function setNetwork(?Network $network): self
+    public function setNetwork(Network $network): self
     {
         $this->network = $network;
 
