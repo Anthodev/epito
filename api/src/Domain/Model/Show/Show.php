@@ -24,6 +24,8 @@ class Show implements ModelInterface
         private string $slug,
         private int $idTvmaze,
         private ShowType $type,
+        /** @var Collection<int, Genre> */
+        private Collection $genres,
         /** @var Collection<int, Season> */
         private Collection $seasons,
         private ?string $summary = null,
@@ -192,6 +194,32 @@ class Show implements ModelInterface
     public function setType(ShowType $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Genre>
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): self
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres->add($genre);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): self
+    {
+        if ($this->genres->contains($genre)) {
+            $this->genres->removeElement($genre);
+        }
 
         return $this;
     }
