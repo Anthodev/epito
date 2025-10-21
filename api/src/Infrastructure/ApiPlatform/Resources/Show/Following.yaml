@@ -1,0 +1,7 @@
+resources:
+    App\Domain\Model\Show\Following:
+        mercure: true
+        operations:
+            ApiPlatform\Metadata\Get: ~
+            ApiPlatform\Metadata\GetCollection: ~
+            ApiPlatform\Metadata\Post: ~

@@ -1,0 +1,6 @@
+resources:
+    App\Domain\Model\User\Role:
+        mercure: true
+        operations:
+            ApiPlatform\Metadata\Get: ~
+            ApiPlatform\Metadata\GetCollection: ~

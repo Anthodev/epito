@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Model\User;
 
-use ApiPlatform\Metadata\ApiResource;
 use App\Domain\Model\Common\ModelInterface;
 use App\Domain\Trait\IdTrait;
 use App\Domain\Trait\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-#[ApiResource(mercure: true)]
 class Role implements ModelInterface
 {
     use IdTrait;

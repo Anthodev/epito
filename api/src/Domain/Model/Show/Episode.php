@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Model\Show;
 
-use ApiPlatform\Metadata\ApiResource;
 use App\Domain\Model\Common\ModelInterface;
 use App\Domain\Trait\IdTrait;
 use App\Domain\Trait\TimestampableTrait;
 use App\Domain\Trait\TitleableTrait;
 
-#[ApiResource(mercure: true)]
 class Episode implements ModelInterface
 {
     use IdTrait;
