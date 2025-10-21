@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="App\Domain\Model\Show\Following">
+        <property name="user">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+        </property>
+        <property name="episode">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+        </property>
+        <property name="season">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+        </property>
+        <property name="show">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+        </property>
+        <property name="startDate">
+            <constraint name="NotNull"/>
+            <constraint name="DateTime"/>
+        </property>
+        <property name="endDate">
+            <constraint name="DateTime"/>
+            <constraint name="GreaterThanOrEqual">
+                <option name="propertyPath">startDate</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

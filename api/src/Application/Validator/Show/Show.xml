@@ -1,0 +1,90 @@
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="App\Domain\Model\Show\Show">
+        <property name="name">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">3</option>
+                <option name="max">255</option>
+            </constraint>
+        </property>
+        <property name="summary">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">3</option>
+                <option name="max">255</option>
+            </constraint>
+        </property>
+        <property name="slug">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">3</option>
+                <option name="max">255</option>
+            </constraint>
+        </property>
+        <property name="idTvmaze">
+            <constraint name="NotNull"/>
+            <constraint name="Positive"/>
+        </property>
+        <property name="status">
+            <constraint name="NotNull"/>
+            <constraint name="Choice">
+                <option name="choices">
+                    <value>in_development</value>
+                    <value>running</value>
+                    <value>ended</value>
+                    <value>canceled</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="poster">
+            <constraint name="Url"/>
+        </property>
+        <property name="website">
+            <constraint name="Url"/>
+        </property>
+        <property name="rating">
+            <constraint name="Range">
+                <option name="min">0</option>
+                <option name="max">10</option>
+            </constraint>
+        </property>
+        <property name="language">
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">10</option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/^[a-z]{2}(-[A-Z]{2})?$/</option>
+            </constraint>
+        </property>
+        <property name="runtime">
+            <constraint name="Positive"/>
+        </property>
+        <property name="premiered">
+            <constraint name="Date"/>
+        </property>
+        <property name="idImdb">
+            <constraint name="Positive"/>
+        </property>
+        <property name="idTvdb">
+            <constraint name="Positive"/>
+        </property>
+        <property name="type">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+        </property>
+        <property name="network">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+        </property>
+        <property name="genres">
+            <constraint name="Valid"/>
+        </property>
+        <property name="seasons">
+            <constraint name="Valid"/>
+        </property>
+    </class>
+</constraint-mapping>
