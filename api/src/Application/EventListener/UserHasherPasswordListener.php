@@ -7,6 +7,8 @@ namespace App\Application\EventListener;
 use App\Application\Security\PasswordChanger;
 use App\Domain\Model\User\User;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 
 #[
@@ -14,6 +16,7 @@ use Doctrine\ORM\Events;
         event: Events::prePersist,
         method: Events::prePersist,
         entity: User::class,
+        priority: 1000,
     ),
 ]
 #[
@@ -21,20 +24,21 @@ use Doctrine\ORM\Events;
         event: Events::preUpdate,
         method: Events::preUpdate,
         entity: User::class,
+        priority: 1000,
     ),
 ]
-class UserHasherPassword
+class UserHasherPasswordListener
 {
     public function __construct(private PasswordChanger $passwordChanger)
     {
     }
 
-    public function prePersist(User $user): void
+    public function prePersist(User $user, PrePersistEventArgs $event): void
     {
         $this->hashPassword($user);
     }
 
-    public function preUpdate(User $user): void
+    public function preUpdate(User $user, PreUpdateEventArgs $event): void
     {
         $this->hashPassword($user);
 
