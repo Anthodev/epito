@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Model\ApiShow;
 
-class ApiEpisode
+use App\Domain\Model\Common\ApiModelInterface;
+
+class ApiEpisode implements ApiModelInterface
 {
     public function __construct(
         public int $id,
