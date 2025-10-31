@@ -375,10 +375,17 @@ class GetShowByNameUseCaseCompleteTest extends TestCase
             ->with($showName, TvmazeRoutesEnum::GET_SEARCH_SHOWS->value)
             ->willReturn($apiResponse);
 
+        // Extract just the show data from the API response (without score wrapper)
+        $showData = array_map(
+            fn(array $item) => $item["show"] ?? null,
+            $apiResponse,
+        );
+        $showData = array_filter($showData, fn($item) => $item !== null);
+
         $this->serializerMock
             ->expects($this->once())
             ->method("denormalize")
-            ->with($apiResponse, ApiGetSearchShowResponseDto::class . "[]")
+            ->with($showData, ApiGetSearchShowResponseDto::class . "[]")
             ->willReturn($dtos);
     }
 

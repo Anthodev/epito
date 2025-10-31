@@ -1,0 +1,30 @@
+resources:
+    App\Domain\Model\ApiShow\ApiShow:
+        mercure: true
+        operations:
+            ApiPlatform\Metadata\GetCollection:
+                uriTemplate: /shows/search
+                controller: App\Presentation\Controller\Show\GetSearchShowController
+                read: false
+                write: false
+                validate: false
+                openapi:
+                    summary: "Search shows by name"
+                    description: "Search for TV shows by name and return matching results"
+                    parameters:
+                        - name: searchTerms
+                          in: query
+                          description: "The search term to find shows by name"
+                          required: true
+                          schema:
+                              type: string
+                    responses:
+                        "200":
+                            description: "List of shows matching the search term"
+                            content:
+                                application/json:
+                                    schema:
+                                        type: array
+                                        items:
+                                            $ref: "#/components/schemas/GetShowsSearchResponseDto"
+                name: get_search_shows

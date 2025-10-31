@@ -27,7 +27,7 @@ class GetShowByNameUseCase
     public function execute(string $name): array
     {
         try {
-            /** @var array<string, mixed> $responseData */
+            /** @var array<int, array<string, mixed>> $responseData */
             $responseData = $this->api->performRequest(
                 $name,
                 TvmazeRoutesEnum::GET_SEARCH_SHOWS->value,
@@ -68,15 +68,25 @@ class GetShowByNameUseCase
     }
 
     /**
-     * @param array<string, mixed> $responseData
+     * @param array<int, array<string, mixed>> $responseData
      *
      * @return ApiGetSearchShowResponseDto[]
      */
     private function formatGetSearchShowsResponse(array $responseData): array
     {
+        $responseShowData = [];
+
+        foreach ($responseData as $data) {
+            if (!isset($data['show'])) {
+                continue;
+            }
+
+            $responseShowData[] = $data['show'];
+        }
+
         /** @var ApiGetSearchShowResponseDto[] */
         return $this->serializer->denormalize(
-            $responseData,
+            $responseShowData,
             ApiGetSearchShowResponseDto::class.'[]',
         );
     }

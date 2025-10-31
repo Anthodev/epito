@@ -131,7 +131,10 @@ class GetShowByNameUseCaseIntegrationTest extends TestCase
         $this->serializerMock
             ->expects($this->once())
             ->method("denormalize")
-            ->with($apiResponse, ApiGetSearchShowResponseDto::class . "[]")
+            ->with(
+                [$apiResponse[0]["show"]],
+                ApiGetSearchShowResponseDto::class . "[]",
+            )
             ->willReturn([$dto]);
 
         // Act

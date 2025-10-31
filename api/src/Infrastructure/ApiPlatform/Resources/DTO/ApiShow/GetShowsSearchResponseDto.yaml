@@ -1,0 +1,3 @@
+resources:
+    App\Infrastructure\ApiPlatform\DTO\ApiShow\GetShowsSearchResponseDto:
+        operations: []

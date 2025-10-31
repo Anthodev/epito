@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Client;
 
+use App\Infrastructure\Enum\TvmazeRoutesEnum;
 use App\Infrastructure\Exception\ApiRequestParseException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -24,13 +25,19 @@ class TvmazeClient extends AbstractApiClient implements ApiInterface
     {
         $query = strtolower(trim($query));
 
-        $requestStrPos = strpos($request, '_');
+        $request = TvmazeRoutesEnum::tryFrom($request);
 
-        if (false === $requestStrPos) {
-            throw new ApiRequestParseException($request);
+        if (null === $request) {
+            throw new ApiRequestParseException('unknown route');
         }
 
-        $requestType = strtolower(substr($request, 0, $requestStrPos));
+        $requestStrPos = strpos($request->name, '_');
+
+        if (false === $requestStrPos) {
+            throw new ApiRequestParseException($request->name);
+        }
+
+        $requestType = strtolower(substr($request->name, 0, $requestStrPos));
 
         $httpMethod = match ($requestType) {
             'get' => Request::METHOD_GET,
@@ -43,7 +50,7 @@ class TvmazeClient extends AbstractApiClient implements ApiInterface
         try {
             return $this->makeRequestWithRetry(
                 $httpMethod,
-                sprintf($request, $query),
+                sprintf($request->value, $query),
             );
         } catch (\Exception) {
             throw new \RuntimeException('Failed to make request', 0);

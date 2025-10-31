@@ -103,7 +103,10 @@ class TvmazeApiResponseHandlingTest extends TestCase
         $this->serializerMock
             ->expects($this->once())
             ->method("denormalize")
-            ->with($apiResponse, ApiGetSearchShowResponseDto::class . "[]")
+            ->with(
+                [$apiResponse[0]["show"]],
+                ApiGetSearchShowResponseDto::class . "[]",
+            )
             ->willReturn([$expectedDto]);
 
         // Act

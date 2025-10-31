@@ -64,7 +64,7 @@ class ApiGetSearchShowResponseDtoNormalizer implements NormalizerInterface, Deno
         array $context = [],
     ): ApiGetSearchShowResponseDto {
         if (!is_array($data)) {
-            throw new \InvalidArgumentException('Data is not an array');
+            throw new \InvalidArgumentException('data is not an array');
         }
 
         $id = isset($data['id']) && is_int($data['id']) ? $data['id'] : 0;
@@ -88,8 +88,8 @@ class ApiGetSearchShowResponseDtoNormalizer implements NormalizerInterface, Deno
         /** @var ShowStatusEnum $status */
         $status =
             isset($data['status']) && is_string($data['status'])
-                ? ShowStatusEnum::tryFrom(strtolower($data['status']))
-                : ShowStatusEnum::IN_DEVELOPMENT;
+                ? ShowStatusEnum::tryFrom(strtolower(str_replace(' ', '_', $data['status'])))
+                : ShowStatusEnum::TO_BE_DETERMINED;
         $summary =
             isset($data['summary']) && is_string($data['summary'])
                 ? $data['summary']
@@ -115,11 +115,13 @@ class ApiGetSearchShowResponseDtoNormalizer implements NormalizerInterface, Deno
                 ? $data['image']['original']
                 : null;
         $theTvDbId =
-            isset($data['externals']['thetvdb']) && is_int($data['externals']['thetvdb'])
+            isset($data['externals']['thetvdb'])
+            && is_int($data['externals']['thetvdb'])
                 ? $data['externals']['thetvdb']
                 : null;
         $imdbId =
-            isset($data['externals']['imdb']) && is_string($data['externals']['imdb'])
+            isset($data['externals']['imdb'])
+            && is_string($data['externals']['imdb'])
                 ? $data['externals']['imdb']
                 : null;
 
